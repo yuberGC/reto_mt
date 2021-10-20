@@ -8,6 +8,7 @@ package reto.api.amodelos;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,10 +27,15 @@ import javax.persistence.Table;
 public class Barco{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
+    @Column(length = 45)
     private String name;
+    @Column(length = 45)
     private String brand;
+    @Column(length = 4)
     private Integer year;
+    @Column(length = 250)
     private String description; 
     
     @ManyToOne
