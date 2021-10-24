@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,10 +32,10 @@ public class Cliente implements Serializable {
     private String name;
     private Integer age;
     
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
     public List<Mensaje>messages;
-    
+
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
     @JsonIgnoreProperties("client")
     public List<Reservaciones>reservations;
@@ -43,7 +44,7 @@ public class Cliente implements Serializable {
     ----------get----------
     */
 
-    public Integer getIdCliente() {
+    public Integer getIdClient() {
         return idClient;
     }
 

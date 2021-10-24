@@ -30,10 +30,10 @@ public class ServiciosCliente {
     }
 
     public Cliente save(Cliente client){
-        if(client.getIdCliente()==null){
+        if(client.getIdClient()==null){
             return metodosCrud.save(client);
         }else{
-            Optional<Cliente> data= metodosCrud.getCliente(client.getIdCliente());
+            Optional<Cliente> data= metodosCrud.getCliente(client.getIdClient());
             if(data.isEmpty()){
                 return metodosCrud.save(client);
             }else{
@@ -43,8 +43,8 @@ public class ServiciosCliente {
     }
     
     public Cliente update(Cliente cliente){
-        if(cliente.getIdCliente()!=null){
-            Optional<Cliente> datos= metodosCrud.getCliente(cliente.getIdCliente());
+        if(cliente.getIdClient()!=null){
+            Optional<Cliente> datos= metodosCrud.getCliente(cliente.getIdClient());
             if(!datos.isEmpty()){
                 if(cliente.getName()!=null){
                     datos.get().setName(cliente.getName());
