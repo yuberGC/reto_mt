@@ -40,5 +40,28 @@ public class ServiciosCategoria {
                 return categoria;
             }
         }
-    }  
+    }
+    
+    public Categoria update(Categoria categoria){
+        if(categoria.getId()!=null){
+            Optional<Categoria>datos=metodosCrud.getCategoria(categoria.getId());
+            if(!datos.isEmpty()){
+                if(categoria.getDescription()!=null){
+                    datos.get().setDescription(categoria.getDescription());
+                }
+                if(categoria.getName()!=null){
+                    datos.get().setName(categoria.getName());
+                }
+                return metodosCrud.save(datos.get());
+            }
+        }
+        return categoria;
+    }
+    public boolean deleteCategoria(int categoriaId){
+        Boolean data=getCategoria(categoriaId).map(categoria -> {
+            metodosCrud.delete(categoria);
+            return true;
+        }).orElse(false);
+        return data;
+    }
 }

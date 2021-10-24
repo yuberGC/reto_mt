@@ -40,5 +40,37 @@ public class ServiciosReservaciones {
                 return reservation;
             }
         }
-    }   
+    }  
+    
+    public Reservaciones update(Reservaciones reservation){
+        if(reservation.getIdReservation()!=null){
+            Optional<Reservaciones> datos= metodosCrud.getReservacion(reservation.getIdReservation());
+            if(!datos.isEmpty()){
+
+                if(reservation.getStartDate()!=null){
+                    datos.get().setStartDate(reservation.getStartDate());
+                }
+                if(reservation.getDevolutionDate()!=null){
+                    datos.get().setDevolutionDate(reservation.getDevolutionDate());
+                }
+                if(reservation.getStatus()!=null){
+                    datos.get().setStatus(reservation.getStatus());
+                }
+                metodosCrud.save(datos.get());
+                return datos.get();
+            }else{
+                return reservation;
+            }
+        }else{
+            return reservation;
+        }
+    }
+
+    public boolean delete(int reservacionId) {
+        Boolean aBoolean = getReservation(reservacionId).map(reservacion -> {
+            metodosCrud.delete(reservacion);
+            return true;
+        }).orElse(false);
+        return aBoolean;
+    }
 }

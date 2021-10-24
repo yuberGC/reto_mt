@@ -43,7 +43,7 @@ public class Cliente implements Serializable {
     ----------get----------
     */
 
-    public Integer getIdClient() {
+    public Integer getIdCliente() {
         return idClient;
     }
 
