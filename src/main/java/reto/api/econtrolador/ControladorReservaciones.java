@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import reto.api.amodelos.Reservaciones;
+import reto.api.crepositorio.Contador;
+import reto.api.crepositorio.StatusReservas;
 import reto.api.dservicios.ServiciosReservaciones;
 
 /**
@@ -52,5 +54,20 @@ public class ControladorReservaciones {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable("id") int idReservacion) {
         return servicio.delete(idReservacion);
-    }
+    }   
+    
+    @GetMapping("/report-status")
+	    public StatusReservas getReservas(){
+	        return servicio.reporteStatusServicio();
+	    }
+	    
+	    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+	     public List<Reservaciones> getReservasTiempo (@PathVariable("dateOne")String dateOne, @PathVariable("dateTwo")String dateTwo ){
+	         return servicio.reporteTiempoServicio(dateOne, dateTwo);
+	     }
+	     
+	     @GetMapping("/report-clients")
+	     public List<Contador> getClientes(){
+	         return servicio.reporteClientesServicio();
+	     }
 }
